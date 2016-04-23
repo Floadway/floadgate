@@ -1,14 +1,14 @@
 {
-  "name": "floadgate",
+  "name": "flood-gate",
   "version": "1.0.0",
-  "description": "A JSON-Tree validator used by Floadway",
+  "description": "A JSON-Tree validator used by Floodway",
   "main": "./build/validator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Floadway/floadgate.git"
+    "url": "git+https://github.com/Floodway/floodgate.git"
   },
   "keywords": [
     "tree",
@@ -20,9 +20,9 @@
   "author": "ElectricCookie",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Floadway/floadgate/issues"
+    "url": "https://github.com/Floodway/floodgate/issues"
   },
-  "homepage": "https://github.com/Floadway/floadgate#readme",
+  "homepage": "https://github.com/Floodway/floodgate#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-coffee": "^2.3.2"
