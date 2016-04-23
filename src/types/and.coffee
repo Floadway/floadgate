@@ -1,7 +1,3 @@
-###
-	@validator "and"
-###
-
 
 module.exports = (params) ->
 	{ options, callback, item, path, validate } = params

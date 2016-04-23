@@ -1,20 +1,3 @@
-
-/*
-	@validator: "Number"
-	@supportedOptions:
-		min: int
-		max: int
-		value: int 
-
-
-		
-	@supportedOperators:
-		round:  precision
-		floor:  precision
-		ceil:  precision
-		minOp: int
-		maxOp: int
- */
 module.exports = function(params) {
   var callback, item, options, path, precisionFactor;
   options = params.options, callback = params.callback, item = params.item, path = params.path;

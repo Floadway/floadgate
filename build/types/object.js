@@ -27,7 +27,7 @@ module.exports = function(params) {
   };
   switch (options.mode) {
     case "loose":
-      return doValidation(item, options.children, options.keys === true, callback);
+      return doValidation(item, options.children, false, callback);
     case "shorten":
       shortenedObject = {};
       failed = false;
@@ -56,7 +56,7 @@ module.exports = function(params) {
       if (failed) {
         return;
       } else {
-        doValidation(shortenedObject, options.children, options.keys === true, callback);
+        doValidation(shortenedObject, options.children, true, callback);
       }
       break;
     default:

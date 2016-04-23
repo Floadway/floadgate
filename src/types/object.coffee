@@ -13,7 +13,7 @@ module.exports = (params) ->
 
 
 			childOptions = if useKeys then children[key] else children
-			
+
 			validate(value,childOptions,path+"."+key,(err,validatedItem) ->
 				if err? 
 					error = err 
@@ -32,7 +32,7 @@ module.exports = (params) ->
 
 		when "loose"
 
-			doValidation(item,options.children,options.keys == true,callback)
+			doValidation(item,options.children,false,callback)
 
 		when "shorten"
 
@@ -73,7 +73,7 @@ module.exports = (params) ->
 
 			else
 
-				doValidation(shortenedObject,options.children,options.keys == true,callback)
+				doValidation(shortenedObject,options.children,true,callback)
 
 			break
 

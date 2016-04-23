@@ -1,20 +1,3 @@
-
-/*
-	@validator: "String"
-	@supportedOptions:
-		minLength: int
-		maxLength: int
-		exactLength: int
-		matchRegex: regex
-		
-	@supportedOperators:
-		trim: boolean
-		toUpperCase: boolean
-		toLowerCase: boolean
-		replace: 
-			pattern: regex/string
-			value: mixed
- */
 module.exports = function(params) {
   var callback, item, options, path;
   options = params.options, callback = params.callback, item = params.item, path = params.path;

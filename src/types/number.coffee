@@ -1,20 +1,3 @@
-###
-	@validator: "Number"
-	@supportedOptions:
-		min: int
-		max: int
-		value: int 
-
-
-		
-	@supportedOperators:
-		round:  precision
-		floor:  precision
-		ceil:  precision
-		minOp: int
-		maxOp: int
-
-###
 module.exports = (params) ->
 	{ options, callback, item, path } = params
 

@@ -1,6 +1,3 @@
-###
-	@validator "or"
-###
 
 
 module.exports = (params) ->

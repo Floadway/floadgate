@@ -2,7 +2,7 @@
   "name": "floadgate",
   "version": "1.0.0",
   "description": "A JSON-Tree validator used by Floadway",
-  "main": "index.js",
+  "main": "./build/validator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

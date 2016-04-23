@@ -1,20 +1,4 @@
-###
-	@validator: "String"
-	@supportedOptions:
-		minLength: int
-		maxLength: int
-		exactLength: int
-		matchRegex: regex
-		
-	@supportedOperators:
-		trim: boolean
-		toUpperCase: boolean
-		toLowerCase: boolean
-		replace: 
-			pattern: regex/string
-			value: mixed
 
-###
 module.exports = (params) ->
 	{ options, callback, item, path } = params
 

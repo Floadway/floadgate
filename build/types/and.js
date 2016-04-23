@@ -1,7 +1,3 @@
-
-/*
-	@validator "and"
- */
 module.exports = function(params) {
   var callback, currIndex, item, options, path, validate, validateStep;
   options = params.options, callback = params.callback, item = params.item, path = params.path, validate = params.validate;
