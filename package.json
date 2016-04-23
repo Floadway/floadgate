@@ -1,0 +1,30 @@
+{
+  "name": "floadgate",
+  "version": "1.0.0",
+  "description": "A JSON-Tree validator used by Floadway",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Floadway/floadgate.git"
+  },
+  "keywords": [
+    "tree",
+    "validator",
+    "json",
+    "validation",
+    "floadway"
+  ],
+  "author": "ElectricCookie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Floadway/floadgate/issues"
+  },
+  "homepage": "https://github.com/Floadway/floadgate#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-coffee": "^2.3.2"
+  }
+}
