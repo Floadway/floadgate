@@ -1,6 +1,6 @@
 # Floadgate
 
-Floadgate is the JSON-Tree validator used by floadway.It validates JSON trees recursively, allows for data preparation tasks and is declaritively configured.
+Floadgate is the JSON-Tree validator used by floadway. It validates JSON trees recursively, allows for data preparation tasks and is declaritively configured.
 
 
 **Installation**
