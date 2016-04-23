@@ -1,5 +1,5 @@
 ###	
-	Floadway/floadgate GULPFILE
+	Floodway/floodgate GULPFILE
 
 ###
 
