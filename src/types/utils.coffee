@@ -56,3 +56,5 @@ module.exports =
 
 					checkDone()
 				)
+		else
+			checkDone()

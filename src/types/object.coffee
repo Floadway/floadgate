@@ -72,7 +72,7 @@ module.exports = (params) ->
 				return 
 
 			else
-
+				
 				doValidation(shortenedObject,options.children,true,callback)
 
 			break

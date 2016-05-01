@@ -45,6 +45,8 @@ module.exports = {
         }));
       }
       return results;
+    } else {
+      return checkDone();
     }
   }
 };
