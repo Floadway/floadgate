@@ -1,6 +1,6 @@
 {
   "name": "flood-gate",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A JSON-Tree validator used by Floodway",
   "main": "./build/validator.js",
   "scripts": {
