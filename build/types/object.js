@@ -3,7 +3,7 @@ var processObject;
 processObject = require("./utils").processObject;
 
 module.exports = function(params) {
-  var callback, doValidation, failed, item, key, options, path, ref, shortenedObject, validate, value;
+  var callback, doValidation, failed, item, key, options, path, ref, shortenedObject, toValidate, validate, value;
   options = params.options, callback = params.callback, item = params.item, path = params.path, validate = params.validate;
   doValidation = function(validateItem, children, useKeys, callback) {
     var error;
@@ -26,6 +26,15 @@ module.exports = function(params) {
     });
   };
   switch (options.mode) {
+    case "partial":
+      toValidate = {};
+      for (key in item) {
+        value = item[key];
+        if (options.children[key] != null) {
+          toValidate[key] = value;
+        }
+      }
+      return doValidation(toValidate, options.children, true, callback);
     case "loose":
       return doValidation(item, options.children, false, callback);
     case "shorten":

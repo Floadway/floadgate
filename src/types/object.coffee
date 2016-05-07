@@ -2,89 +2,95 @@
 
 
 module.exports = (params) ->
-	{ options, callback, item, path, validate } = params
+  { options, callback, item, path, validate } = params
 
-	doValidation =  (validateItem,children,useKeys,callback) ->
+  doValidation =  (validateItem,children,useKeys,callback) ->
 
-		error = null 
+    error = null 
 
-		processObject(validateItem,(key,value,done) ->
-
-
-
-			childOptions = if useKeys then children[key] else children
-
-			validate(value,childOptions,path+"."+key,(err,validatedItem) ->
-				if err? 
-					error = err 
-				done(validatedItem)
-			)
-		,(finalObject) ->
-			if error? 
-				callback(error,null)
-			else 
-				callback(null,finalObject)
-		)
+    processObject(validateItem,(key,value,done) ->
 
 
-	switch options.mode 
 
-		when "partial"
+      childOptions = if useKeys then children[key] else children
 
-			doValidation(item,options.children,true,callback)
+      validate(value,childOptions,path+"."+key,(err,validatedItem) ->
+        if err? 
+          error = err 
+        done(validatedItem)
+      )
+    ,(finalObject) ->
+      if error? 
+        callback(error,null)
+      else 
+        callback(null,finalObject)
+    )
 
 
-		when "loose"
+  switch options.mode 
 
-			doValidation(item,options.children,false,callback)
+    when "partial"
 
-		when "shorten"
+      toValidate = {}      
+      for key,value of item
+        if options.children[key]?
+          toValidate[key] = value
 
 
-			shortenedObject = {}
-			failed = false
+      doValidation(toValidate,options.children,true,callback)
 
-			for key,value of options.children
 
-				if item[key]? 
+    when "loose"
 
-					shortenedObject[key] = item[key]
+      doValidation(item,options.children,false,callback)
 
-				else 
+    when "shorten"
 
-					if value.optional
 
-						if value.default? 
+      shortenedObject = {}
+      failed = false
 
-							shortenedObject[key] = value.default
+      for key,value of options.children
 
-						else 
+        if item[key]? 
 
-							shortenedObject[key] = null
-					
-					else					
+          shortenedObject[key] = item[key]
 
-						callback(
-							error: "missingProp"
-							path: path+"."+key
-						)
-						failed = true
-						break
-			
-			if failed
+        else 
 
-				return 
+          if value.optional
 
-			else
-				
-				doValidation(shortenedObject,options.children,true,callback)
+            if value.default? 
 
-			break
+              shortenedObject[key] = value.default
 
-		
+            else 
 
-		else 
-			callback(
-				error: "invalidMode"
-				path: path
-			)
+              shortenedObject[key] = null
+          
+          else          
+
+            callback(
+              error: "missingProp"
+              path: path+"."+key
+            )
+            failed = true
+            break
+      
+      if failed
+
+        return 
+
+      else
+        
+        doValidation(shortenedObject,options.children,true,callback)
+
+      break
+
+    
+
+    else 
+      callback(
+        error: "invalidMode"
+        path: path
+      )
