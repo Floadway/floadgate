@@ -35,6 +35,27 @@ module.exports = function(params) {
         }
       }
       return doValidation(toValidate, options.children, true, callback);
+    case "ensure":
+      toValidate = {};
+      for (key in item) {
+        value = item[key];
+        if (options.children[key] != null) {
+          toValidate[key] = value;
+        }
+      }
+      return doValidation(toValidate, options.children, true, function(err, validated) {
+        if (err != null) {
+          return callback(err);
+        } else {
+          for (key in item) {
+            value = item[key];
+            if (validated[key] != null) {
+              item[key] = validated[key];
+            }
+          }
+          return callback(null, item);
+        }
+      });
     case "loose":
       return doValidation(item, options.children, false, callback);
     case "shorten":

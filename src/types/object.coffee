@@ -49,11 +49,11 @@ module.exports = (params) ->
 
       doValidation(toValidate,options.children,true,(err,validated) ->
 
-        if err? then callback(err) else
+        if err? then callback(err) else 
 
           for key,value of item
 
-            if toValidate[key]? then item[key] = toValidate[key]
+            if validated[key]? then item[key] = validated[key]
 
           callback(null,item)
 
