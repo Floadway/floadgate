@@ -39,6 +39,25 @@ module.exports = (params) ->
 
       doValidation(toValidate,options.children,true,callback)
 
+    when "ensure"
+
+      toValidate = {}
+      for key,value of item
+        if options.children[key]?
+          toValidate[key] = value
+
+
+      doValidation(toValidate,options.children,true,(err,validated) ->
+
+        if err? then callback(err) else
+
+          for key,value of item
+
+            if toValidate[key]? then item[key] = toValidate[key]
+
+          callback(null,item)
+
+      )
 
     when "loose"
 
