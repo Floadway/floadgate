@@ -4,6 +4,7 @@
 module.exports = (params) ->
   { options, callback, item, path, validate } = params
 
+
   doValidation =  (validateItem,children,useKeys,callback) ->
 
     error = null 
@@ -13,6 +14,9 @@ module.exports = (params) ->
 
 
       childOptions = if useKeys then children[key] else children
+
+
+      if childOptions.optional and value == null then return done(value)
 
       validate(value,childOptions,path+"."+key,(err,validatedItem) ->
         if err? 
@@ -70,31 +74,32 @@ module.exports = (params) ->
       failed = false
 
       for key,value of options.children
+        do(key,value) ->
+          if not failed
+            if item[key]?
 
-        if item[key]? 
+              shortenedObject[key] = item[key]
 
-          shortenedObject[key] = item[key]
+            else
 
-        else 
+              if value.optional
 
-          if value.optional
+                if value.default?
 
-            if value.default? 
+                  shortenedObject[key] = value.default
 
-              shortenedObject[key] = value.default
+                else
 
-            else 
+                  shortenedObject[key] = null
 
-              shortenedObject[key] = null
-          
-          else          
+              else
 
-            callback(
-              error: "missingProp"
-              path: path+"."+key
-            )
-            failed = true
-            break
+                callback(
+                  error: "missingProp"
+                  path: path+"."+key
+                )
+                failed = true
+                return
       
       if failed
 

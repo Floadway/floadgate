@@ -3,7 +3,7 @@ var processObject;
 processObject = require("./utils").processObject;
 
 module.exports = function(params) {
-  var callback, doValidation, failed, item, key, options, path, ref, shortenedObject, toValidate, validate, value;
+  var callback, doValidation, failed, fn, item, key, options, path, ref, shortenedObject, toValidate, validate, value;
   options = params.options, callback = params.callback, item = params.item, path = params.path, validate = params.validate;
   doValidation = function(validateItem, children, useKeys, callback) {
     var error;
@@ -11,6 +11,9 @@ module.exports = function(params) {
     return processObject(validateItem, function(key, value, done) {
       var childOptions;
       childOptions = useKeys ? children[key] : children;
+      if (childOptions.optional && value === null) {
+        return done(value);
+      }
       return validate(value, childOptions, path + "." + key, function(err, validatedItem) {
         if (err != null) {
           error = err;
@@ -62,26 +65,30 @@ module.exports = function(params) {
       shortenedObject = {};
       failed = false;
       ref = options.children;
-      for (key in ref) {
-        value = ref[key];
-        if (item[key] != null) {
-          shortenedObject[key] = item[key];
-        } else {
-          if (value.optional) {
-            if (value["default"] != null) {
-              shortenedObject[key] = value["default"];
-            } else {
-              shortenedObject[key] = null;
-            }
+      fn = function(key, value) {
+        if (!failed) {
+          if (item[key] != null) {
+            return shortenedObject[key] = item[key];
           } else {
-            callback({
-              error: "missingProp",
-              path: path + "." + key
-            });
-            failed = true;
-            break;
+            if (value.optional) {
+              if (value["default"] != null) {
+                return shortenedObject[key] = value["default"];
+              } else {
+                return shortenedObject[key] = null;
+              }
+            } else {
+              callback({
+                error: "missingProp",
+                path: path + "." + key
+              });
+              failed = true;
+            }
           }
         }
+      };
+      for (key in ref) {
+        value = ref[key];
+        fn(key, value);
       }
       if (failed) {
         return;
