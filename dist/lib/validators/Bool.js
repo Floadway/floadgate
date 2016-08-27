@@ -22,6 +22,7 @@ function Bool(options) {
             validate: function (item, callback, path) {
                 validate(item, callback, path + "." + c.constructor.name + "." + name);
             },
+            type: Boolean,
             options: options
         });
     };

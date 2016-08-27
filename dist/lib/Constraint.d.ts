@@ -5,4 +5,5 @@ export interface Constraint {
         (item: any, callback: ValidationCallback, path);
     };
     options: ConstraintOptions;
+    type: Function;
 }

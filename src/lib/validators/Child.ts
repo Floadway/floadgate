@@ -52,10 +52,12 @@ export function Child(options: ChildOptions){
             validate: (item,callback,path) => {
                 validate(item,callback,path+"."+c.constructor.name+"."+name)
             },
+            type: options.type
+            ,
             options
         });
     };
     decorator["validate"] = validate;
-
+    decorator["type"] = options.type;
     return decorator;
 }

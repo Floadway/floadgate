@@ -79,7 +79,8 @@ export function Arr(options: ArrayOptions){
 
 
             },
-            options
+            options,
+            type: Array
         });
     };
 

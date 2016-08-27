@@ -119,11 +119,13 @@ export function Str(options?: StringOptions){
             validate: (item,callback,path) => {
                 validate(item,callback,path+"."+c.constructor.name+"."+name)
             },
+            type: String,
             options
         });
     };
 
     decorator["validate"] = validate;
+    decorator["type"] = String;
 
 
 

@@ -18,7 +18,7 @@ export class SchemaItem{
 	}
 
 	public getName(): string{
-		return this.schemaConstructor.constructor["name"];
+		return this.schemaConstructor["name"];
 	}
 
 	public getConstructor(): Function{
@@ -67,6 +67,47 @@ export class SchemaItem{
 		}
 
 		return result;
+	}
+
+
+	getSchema(group){
+
+		let constraints = this.getConstraintsForGroup(group);
+		let result = {};
+		for(let key in constraints){
+
+
+
+			result[key] = constraints[key].map((constraint) => {
+				let finalOptions = {};
+				Object.keys(constraint.options).map((key) => {
+					if(constraint.options[key] instanceof Function){
+
+						finalOptions[key] = constraint.options[key]["name"];
+
+						if(constraint.options[key]["type"] != null){
+							finalOptions["child"] = constraint.options[key]["type"]["name"];
+						}
+
+
+					}else{
+						finalOptions[key] = constraint.options[key];
+					}
+				});
+				return {
+					type: constraint.type['name'],
+					options: finalOptions
+				}
+			});
+		}
+
+
+		return {
+			name: this.getName(),
+			mode: Utils.schemaModeToString(this.getOptions().mode),
+			constraints: result
+		}
+
 	}
 
 	validate<T>(item: any,callback: { (err: ValidationError,res: T) },group,path){

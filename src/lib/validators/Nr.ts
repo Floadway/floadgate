@@ -91,11 +91,13 @@ export function Nr(options?: NrOptions){
             validate: (item, callback, path) => {
                 validate(item,callback,path+"."+c.constructor.name+"."+name);
             },
+            type: Number,
             options
         });
     };
 
     decorator["validate"] = validate;
+    decorator["type"] = Number;
 
     return decorator;
 }

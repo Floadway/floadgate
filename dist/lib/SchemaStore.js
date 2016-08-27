@@ -20,6 +20,12 @@ var SchemaStore = (function () {
             this.getSchema(item.constructor).validate(item, callback, group, path);
         }
     };
+    SchemaStore.prototype.getRepresentation = function (constructor, group) {
+        return this.getSchema(constructor).getSchema(group);
+    };
+    SchemaStore.prototype.getSchemas = function () {
+        return this.schemas;
+    };
     SchemaStore.prototype.getSchema = function (constructor) {
         return this.schemas.filter(function (i) {
             return i.getConstructor() == constructor;

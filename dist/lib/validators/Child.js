@@ -21,10 +21,12 @@ function Child(options) {
             validate: function (item, callback, path) {
                 validate(item, callback, path + "." + c.constructor.name + "." + name);
             },
+            type: options.type,
             options: options
         });
     };
     decorator["validate"] = validate;
+    decorator["type"] = options.type;
     return decorator;
 }
 exports.Child = Child;

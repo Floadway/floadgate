@@ -32,10 +32,12 @@ function Email(options) {
             validate: function (item, callback, path) {
                 validate(item, callback, path + "." + c.constructor.name + "." + name);
             },
+            type: String,
             options: options
         });
     };
     decorator["validate"] = validate;
+    decorator["type"] = String;
     return decorator;
 }
 exports.Email = Email;

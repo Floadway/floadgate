@@ -14,6 +14,11 @@ export declare class SchemaItem {
     getConstraintsForGroup(group: string): {
         [path: string]: Constraint[];
     };
+    getSchema(group: any): {
+        name: string;
+        mode: string;
+        constraints: {};
+    };
     validate<T>(item: any, callback: {
         (err: ValidationError, res: T);
     }, group: any, path: any): any;

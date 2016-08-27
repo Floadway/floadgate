@@ -47,7 +47,8 @@ function Arr(options) {
                 }
                 group.run();
             },
-            options: options
+            options: options,
+            type: Array
         });
     };
     decorator["isValidator"] = true;

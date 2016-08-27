@@ -6,6 +6,12 @@ export declare class SchemaStore {
     private schemas;
     constructor();
     validate<T>(item: any, callback: ValidationCallback, group?: any, path?: any): void;
+    getRepresentation(constructor: any, group: any): {
+        name: string;
+        mode: string;
+        constraints: {};
+    };
+    getSchemas(): SchemaItem[];
     getSchema(constructor: any): SchemaItem;
     addConstraint(fn: Function, name: string, constraint: Constraint): void;
     registerSchema(constructor: any, options: SchemaOptions): void;

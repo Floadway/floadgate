@@ -9,7 +9,7 @@ var SchemaItem = (function () {
         this.schemaConstructor = constructor;
     }
     SchemaItem.prototype.getName = function () {
-        return this.schemaConstructor.constructor["name"];
+        return this.schemaConstructor["name"];
     };
     SchemaItem.prototype.getConstructor = function () {
         return this.schemaConstructor;
@@ -47,6 +47,35 @@ var SchemaItem = (function () {
             }
         }
         return result;
+    };
+    SchemaItem.prototype.getSchema = function (group) {
+        var constraints = this.getConstraintsForGroup(group);
+        var result = {};
+        for (var key in constraints) {
+            result[key] = constraints[key].map(function (constraint) {
+                var finalOptions = {};
+                Object.keys(constraint.options).map(function (key) {
+                    if (constraint.options[key] instanceof Function) {
+                        finalOptions[key] = constraint.options[key]["name"];
+                        if (constraint.options[key]["type"] != null) {
+                            finalOptions["child"] = constraint.options[key]["type"]["name"];
+                        }
+                    }
+                    else {
+                        finalOptions[key] = constraint.options[key];
+                    }
+                });
+                return {
+                    type: constraint.type['name'],
+                    options: finalOptions
+                };
+            });
+        }
+        return {
+            name: this.getName(),
+            mode: Utils.schemaModeToString(this.getOptions().mode),
+            constraints: result
+        };
     };
     SchemaItem.prototype.validate = function (item, callback, group, path) {
         var resultItem = this.options.mode == SchemaMode_1.SchemaMode.LOOSE ? item : {};

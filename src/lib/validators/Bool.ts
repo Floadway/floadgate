@@ -47,6 +47,7 @@ export function Bool(options?: BooleanOptions){
             validate: (item,callback,path) => {
                 validate(item,callback,path+"."+c.constructor.name+"."+name)
             },
+            type: Boolean,
             options
         });
     };

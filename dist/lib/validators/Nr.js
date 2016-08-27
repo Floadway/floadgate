@@ -62,10 +62,12 @@ function Nr(options) {
             validate: function (item, callback, path) {
                 validate(item, callback, path + "." + c.constructor.name + "." + name);
             },
+            type: Number,
             options: options
         });
     };
     decorator["validate"] = validate;
+    decorator["type"] = Number;
     return decorator;
 }
 exports.Nr = Nr;

@@ -27,6 +27,16 @@ export class SchemaStore{
 		}
 	}
 
+	getRepresentation(constructor,group){
+		return this.getSchema(constructor).getSchema(group);
+	}
+
+	getSchemas(){
+		return this.schemas;
+	}
+
+
+
 	getSchema(constructor): SchemaItem{
 
 		return this.schemas.filter((i) => {
