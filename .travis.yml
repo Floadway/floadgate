@@ -1,0 +1,5 @@
+before_script:
+  - npm i -g typescript typings mocha
+  - typings install
+  - tsc
+  - mocha
