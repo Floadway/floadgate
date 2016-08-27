@@ -1,3 +1,10 @@
+language: node_js
+node_js:
+  - "node"
+  - "6.1"
+  - "5.11"
+  - "4.4.7"
+  - "iojs"
 before_script:
   - npm i -g typescript typings mocha
   - typings install
