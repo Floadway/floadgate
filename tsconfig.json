@@ -1,0 +1,30 @@
+{
+	"files": [
+        "./src/index.ts",
+        "./typings/index",
+        "./src/tests/schema.test.ts",
+        "./src/tests/children.test.ts",
+        "./src/tests/number.test.ts",
+        "./src/tests/email.test.ts",
+        "./src/tests/arr.test.ts"
+    ],
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "experimentalDecorators": true,
+        "noLib": false,
+        "jsx": "react",
+        "outDir": "dist"
+    },
+    "exclude": [
+      "node_modules",
+      "dist",
+      "node_modules",
+      "typings"
+    ]
+}
