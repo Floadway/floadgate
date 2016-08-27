@@ -16,3 +16,4 @@ export { Schema } from "./lib/Schema";
 export { Bool } from "./lib/validators/Bool";
 export { Arr } from "./lib/validators/Arr";
 export { Email } from "./lib/validators/Email";
+export { Child } from "./lib/validators/Child";

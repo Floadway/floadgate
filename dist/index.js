@@ -19,4 +19,6 @@ var Arr_1 = require("./lib/validators/Arr");
 exports.Arr = Arr_1.Arr;
 var Email_1 = require("./lib/validators/Email");
 exports.Email = Email_1.Email;
+var Child_1 = require("./lib/validators/Child");
+exports.Child = Child_1.Child;
 //# sourceMappingURL=index.js.map
