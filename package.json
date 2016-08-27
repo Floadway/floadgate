@@ -2,8 +2,8 @@
   "name": "flood-gate",
   "version": "2.0.0",
   "description": "A typescript object validation library using decorators",
-  "main": "./build/index.js",
-  "typings": "./build/index",
+  "main": "./dist/index.js",
+  "typings": "./dist/index",
   "scripts": {
     "test": "mocha",
     "dev": "tsc -w",
