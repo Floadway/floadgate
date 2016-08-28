@@ -3,6 +3,7 @@ import { Constraint } from "./Constraint";
 import { SchemaOptions } from "./SchemaOptions";
 import { SchemaItem } from "./SchemaItem";
 import { SchemaMode} from "./SchemaMode";
+import _ = require("lodash");
 
 export class SchemaStore{
 
@@ -33,6 +34,70 @@ export class SchemaStore{
 
 	getSchemas(){
 		return this.schemas;
+	}
+
+	isPrimitive(item: any){
+		return item == Number || item == String || item == Boolean;
+	}
+
+	populateSchema<T>(constructorT: any,data,group): T{
+
+		if(data == null){
+			data = {};
+		}
+
+		console.log(constructorT);
+
+		let schema = this.getSchema(constructorT);
+
+		let result = new constructorT();
+
+		if(schema == null){
+			throw new Error("Can not apply schema. Unknown schema");
+		}
+
+		let constraints = schema.getConstraintsForGroup(group);
+
+		Object.keys(constraints).map((key) => {
+
+			let items: Constraint[] = constraints[key];
+
+			items.map((item) => {
+
+
+				if(this.isPrimitive(item.type)){
+
+					result[key] = data[key];
+
+				}else if(item.type == Array){
+
+					if(!this.isPrimitive(item.options["child"]["type"])){
+
+
+						if(_.isArray(data[key])){
+							result[key] = data[key].map((value) => {
+								return this.populateSchema(item.options["child"],value,item.options["group"]);
+							})
+						}
+					}else{
+
+						// Primitive array
+						result[key] = data[key];
+
+					}
+
+				}else{
+
+					result[key] = this.populateSchema(item.type,data[key],group);
+
+				}
+
+			})
+
+		});
+
+		return result;
+
 	}
 
 

@@ -12,6 +12,8 @@ export declare class SchemaStore {
         constraints: {};
     };
     getSchemas(): SchemaItem[];
+    isPrimitive(item: any): boolean;
+    populateSchema<T>(constructorT: any, data: any, group: any): T;
     getSchema(constructor: any): SchemaItem;
     addConstraint(fn: Function, name: string, constraint: Constraint): void;
     registerSchema(constructor: any, options: SchemaOptions): void;

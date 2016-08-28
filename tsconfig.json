@@ -4,6 +4,7 @@
         "./typings/index",
         "./src/tests/schema.test.ts",
         "./src/tests/children.test.ts",
+        "./src/tests/populate.test.ts",
         "./src/tests/representation.test.ts",
         "./src/tests/number.test.ts",
         "./src/tests/email.test.ts",
